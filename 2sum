@@ -1,0 +1,21 @@
+# Find a pair of numbers from unsorted array that sums to target.
+# Assume that there is at least one pair.
+
+# The idea is to create a set of checked numbers and compare it with next number.
+
+array = [4,4,6,7,3,9]
+target = 12
+
+watched = set()
+def find_pair(array,target):
+    for number in array:
+        if target - number in watched:
+            return (target-number, number)
+        else:
+            watched.add(number)
+
+pair = find_pair(array,target)
+print(pair)
+
+# Time O(n), since we iterating through array only once.
+# Space O(n), since we create 1 set length of array.

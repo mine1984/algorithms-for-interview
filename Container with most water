@@ -1,0 +1,39 @@
+# You got array with non-negative numbers
+# Imagine that you've container with partitions. Numbers represent the hight of partitions.
+# Which 2 partitions contain most ammount of water?
+
+# The strategy is to iterate through array by moving left or right edge to the center from any side. But to move the one with lower hight.
+# Let's decide that i and j are required partitions.
+# Sooner or later we'll definitely get to one of them, doesn't really matter which one, let it be left(i).
+# Let's decide that at this exact moment at the right edge we've got index k.
+# We need to prove that for all indexes from j+1 to k their hights are lower than a[i].
+# Really, let's propose that at least one of them (a[k]) will be higher than a[i].
+# It means that area of that container will be a[i] * (k-i) which is grater than a[i] * (j-i),
+# which in it's turn grater than min(a[i],a[j])(j-i).
+# But we decided earlier that area between i and j partitions is greatest,
+# then our proposition that at least one hight between a[j+1] and a[k] is greater that a[i] is false.
+# Which mean that by our strategy we'll defenetely find required indexes
+
+
+
+array = [2,3,4,3,4,3,5,2]
+left = 0
+right = len(array)-1
+area = 0
+
+while left < right:
+    new_area = min(array[left],array[right])*(right - left)
+    if new_area > area:
+        area = new_area
+        left_t = left
+        right_t = right
+    if array[left]<array[right]:
+        left += 1
+    else:
+        right += -1
+
+print(area,left_t,right_t)
+
+
+# Time: O(n), since we iterate only once through array.
+# Space: O(1), since we use only constants.

@@ -1,0 +1,16 @@
+# You've got a sorted array with duplicate integers.
+# You should remove duplicates without using extra space(other lists).
+
+array = [2,2,3,3,4,5,5,5]
+i = 0
+
+while i < len(array)-1:
+    if array[i] == array[i+1]:
+        array.pop(i)  # Remove by index
+        continue
+    i += 1
+
+print(array)
+
+# Time: O(n), since we iterating only once.
+# Space: O(1), since we using only constants.

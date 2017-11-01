@@ -1,0 +1,17 @@
+# Remove all elements of array that equal of target value.
+# You're not allowed to use extra space(no new lists, etc)
+
+array = [2,5,2,3,5,3,4,5,5,5,7,8]
+target = 5
+i = 0
+
+while i < len(array)-1:
+    if array[i] == target:
+        array.pop(i)
+        continue
+    i += 1
+
+print(array)
+
+# Time: O(n), since we iterate through array only once.
+# Space: O(1), since we use only constats.

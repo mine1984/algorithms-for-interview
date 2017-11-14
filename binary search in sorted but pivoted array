@@ -1,0 +1,28 @@
+# You got a sorted array, but it's tail moved to the head at some point.
+# The idea is to use standart binary search, but every time you also have to check if you are in sorted or in unsorted half of array.
+
+array = [8,9,10,11,12,13,14,15,16,17,18,19,20,0,1,2,3,4,5,6,7]
+target = 13
+
+low = 0
+high = len(array)
+
+while low < high:
+    mid = int((low+high)/2)
+    if array[mid] == target:
+        index = mid
+        break
+    elif array[mid] > array[0]:
+        if array[mid] > target and target >= array[0]:
+            high = mid
+        else:
+            low = mid
+    else:
+        if array[mid] < target and target <= array[-1]:
+            low = mid
+        else:
+            high = mid
+print(index)
+
+# Time: O(log(n)), since doubling n will add us only one step.
+# Space: O(1), since we use only constants.

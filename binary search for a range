@@ -1,0 +1,36 @@
+# You've got a sorted array with repeated values.
+# Find left and right limits of a target value.
+
+# The idea is to find both boundaries through the same search, it should make only twice more time.
+
+array = [0,1,2,2,2,3,4,5,5,5,6,7,8,9,9,9,9,10,11,12,13,14,14,14,14,15,16,17,18,19,20,]
+target = 9
+
+low_l = 0
+low_r = 0
+high_l = len(array)
+high_r = len(array)
+index_l = None
+index_r = None
+
+while not index_l or not index_r:
+    mid_l = int((low_l+high_l)/2)
+    mid_r = int((low_r+high_r)/2)
+    
+    if array[mid_l] >= target:
+        if array[mid_l-1] < target:     # Check for boundary
+            index_l = mid_l
+        high_l = mid_l
+    else:
+        low_l = mid_l
+    if array[mid_r] <= target:
+        if array[mid_r+1] > target:     # Check for boundary
+            index_r = mid_r
+        low_r = mid_r
+    else:
+        high_r = mid_r
+    
+print(index_l,index_r)
+
+# Time: O(log(n)), since it's a binary search
+# Space: O(1), since we only use constants

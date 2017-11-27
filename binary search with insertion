@@ -1,0 +1,38 @@
+# You've got a sorted array and a number. You goal is to find index of number in array.
+# And if it's not, the index of a place where it should be inserted.
+# Assume that array doesn't have same values.
+
+array = [0,3,7,10]
+target = 8
+
+low = 0
+high = len(array)
+
+def where_is_number(array,target):
+    # Check if this number out of range
+    if target < array[0]:
+        return 0
+    if target > array[-1]:
+        return len(array)
+
+    low = 0
+    high = len(array)
+    
+    while low < high:
+        mid = int((low+high)/2)
+       
+        if array[mid] == target:
+            return mid            
+        else:
+            if array[mid] < target:
+                low = mid
+            else:
+                if array[mid-1] < target: # Check for value presence
+                    return mid
+                else:
+                    high = mid
+
+print(where_is_number(array,target))
+
+# Time: O(log(n)), since it's a binary search.
+# Space: O(1), since we are using only constants.
